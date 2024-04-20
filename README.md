@@ -159,6 +159,12 @@ python run_eval.py -d <DSET_TYPE> -i <RES_ROOT> -f <JOB_FILE>
 where `<JOB_FILE>` is the same job file used to launch all optimization runs.
 
 
+# Trouble Shooting
+If you encounter the following error message, `qt.qpa.plugin: Could not load the Qt platform plugin "xcb" in "/home/ccw/anaconda3/envs/align/lib/python3.10/site-packages/cv2/qt/plugins" even though it was found.`, try this.
+```
+pip install opencv-python-headless
+```
+
 ## BibTeX
 
 If you use our code in your research, please cite the following paper:
