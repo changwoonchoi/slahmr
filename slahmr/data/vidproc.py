@@ -66,7 +66,10 @@ def preprocess_cameras(cfg, overwrite=False):
         start = start + cfg.start_idx
     intrins_path = cfg.sources.get("intrins", None)
     if intrins_path is not None:
-        intrins_path = check_intrins(cfg.type, cfg.root, intrins_path, cfg.seq, cfg.split)
+        if cfg.type == "panoptic":
+            pass
+        else:
+            intrins_path = check_intrins(cfg.type, cfg.root, intrins_path, cfg.seq, cfg.split)
 
     cmd = get_command(
         img_dir,

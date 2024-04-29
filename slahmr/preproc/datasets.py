@@ -50,6 +50,18 @@ def update_args(args):
         args.img_name = "JPEGImages/Full-Resolution"
         args.split = ""
 
+    elif args.type == "panoptic":
+        if args.root is None:
+            warnings.warn(
+                "args.root flag is set to None, using root directory in source"
+            )
+            args.root = "/path/to/panoptic"
+        args.img_name = ""
+        args.split = ""
+        args.cam = ""
+        breakpoint()
+        args.seqs = get_panoptic_seqs(args.root, args.split, args.cam)
+
     else:
         assert args.root is not None
         args.img_name = args.img_name if args.img_name is not None else "images"
@@ -123,6 +135,11 @@ def get_davis_seqs(data_root):
     if not os.path.isdir(img_root):
         return []
     return sorted(os.listdir(img_root))
+
+def get_panoptic_seqs(data_root, split, cam):
+    img_path = os.path.join(data_root, split, cam)
+    seq_files = sorted(os.listdir(img_path))
+    return seq_files
 
 
 def get_img_dir(data_type, data_root, seq, img_name):

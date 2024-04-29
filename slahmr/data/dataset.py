@@ -65,10 +65,11 @@ def get_data_source(source):
 
 
 def check_data_sources(args):
-    if args.type == "video":
+    if args.type == "video" or args.type == "panoptic":
         preprocess_frames(args.sources.images, args.src_path, **args.frame_opts)
-    preprocess_tracks(args.sources.images, args.sources.tracks, args.sources.shots)
-    preprocess_cameras(args, overwrite=args.get("overwrite_cams", False))
+    preprocess_tracks(args.sources.images, args.sources.tracks, args.sources.shots, overwrite=False)
+    # preprocess_cameras(args, overwrite=args.get("overwrite_cams", False))
+    preprocess_cameras(args, overwrite=False)
 
 
 class MultiPeopleDataset(Dataset):

@@ -1,0 +1,26 @@
+type: panoptic
+split: val
+root: /home/ccw/project/align_smpl/data/panoptic/
+scene: "161029_sports1"
+seq: "clips_3_undistorted"
+cam: "00_02"
+ext: mp4
+src_path: ${data.root}/${data.scene}/${data.seq}/${data.cam}.${data.ext}
+frame_opts:
+  ext: jpg
+  fps: 30
+  start_sec: 0
+  end_sec: -1
+use_cams: True
+track_ids: "all"
+shot_idx: 0
+start_idx: 0
+end_idx: -1 
+split_cameras: True
+name: ${data.scene}-${data.seq}-${data.cam}
+sources:
+  images: ${data.root}/${data.scene}/${data.seq}/${data.cam}
+  cameras: ${data.root}/${data.scene}/${data.seq}/slahmr_preproc/cameras/${data.cam}/shot-${data.shot_idx}
+  tracks: ${data.root}/${data.scene}/${data.seq}/slahmr_preproc/track_preds/${data.cam}
+  shots: ${data.root}/${data.scene}/${data.seq}/slahmr_preproc/shot_idcs/${data.cam}.json
+  intrins: ${data.root}/${data.scene}/${data.seq}/${data.cam}.txt

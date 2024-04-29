@@ -104,6 +104,8 @@ def get_intrins_path(data_type, data_root, seq):
         return None
     if "egobody" in data_type or "3dpw" in data_type:
         return f"{data_root}/slahmr/cameras_gt/{seq}/intrinsics.txt"
+    if "panoptic" in data_type:
+        raise NotImplementedError("need to implement panoptic dataset")
     raise NotImplementedError
 
 
@@ -143,6 +145,8 @@ def check_intrins(data_type, data_root, intrins_path, img_dir):
     if "3dpw" in data_type:
         if not os.path.isfile(intrins_path):
             intrins_path = export_3dpw.export_seq(data_root, split, seq, out_root)[0]
+    if "panoptic" in data_type:
+        raise NotImplementedError("need to implement panoptic dataset")
     return intrins_path
 
 
